@@ -1,7 +1,10 @@
 <?php
 
+use App\Enums\FlagVar;
+use App\Http\Controllers\CheckController;
 use App\Models\Flag;
 use Illuminate\Http\Request;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
@@ -15,4 +18,8 @@ Route::middleware('isRunBefore')->group(function () {
         return response()->json(['message' => 'First time running']);
     });
 
+});
+
+Route::middleware(['api', 'isRunBeforeUseVar', StartSession::class])->group(function () {
+    Route::get('/one-time-2', [CheckController::class, 'oneTime']);
 });
