@@ -17,9 +17,9 @@ class isRunBeforeUseVar
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $f = session('flagVar');
-        dd($f);
-        if(session('flagVar') === 1) {
+        $flagValue = config('custom_flag.flag.value');
+
+        if($flagValue !==0) {
 
             if ($request->expectsJson()) {
                 return response()->json([
