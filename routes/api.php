@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\FlagVar;
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\CheckController;
 use App\Models\Flag;
 use Illuminate\Http\Request;
@@ -19,6 +20,9 @@ Route::middleware('isRunBefore')->group(function () {
     });
 
 });
+
+Route::get('/limited-api', [ApiController::class, 'limitedApi']);
+
 
 Route::middleware(['api', 'isRunBeforeUseVar', StartSession::class])->group(function () {
     Route::get('/one-time-2', [CheckController::class, 'oneTime']);
