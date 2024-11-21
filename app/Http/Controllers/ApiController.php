@@ -2,36 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApiStartTime;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class ApiController extends Controller
 {
-    // The start time and duration for the API availability
-    private $cacheKey = 'api_start_time'; // Key to store the start time
-    private $durationInSeconds = 30;     // API availability duration
 
     public function limitedApi(Request $request)
     {
-        // Check if the start time is already set in the cache
-        $startTime = Cache::get($this->cacheKey);
+        $getData = ApiStartTime::first();
+        if (!$getData) {
+            ApiStartTime::create([
+                'api_start_time' => Carbon::now()->addSeconds(40),
+            ]);
 
-        if (!$startTime) {
-            // Set the start time on the first hit
-            $startTime = now();
-            Cache::put($this->cacheKey, $startTime, $this->durationInSeconds); // Cache it for 30 seconds
+            return response()->json(['message' => 'API hit successful.'], 200);
         }
 
-        // Calculate the elapsed time
-        $currentTime = now();
-        $elapsedTime = $currentTime->diffInSeconds($startTime);
+        $apiStartTime = Carbon::parse($getData->api_start_time);
+        $currentTime = Carbon::now();
 
-        if ($elapsedTime > $this->durationInSeconds) {
-            // Return 404 if the time limit has passed
-            return response()->json(['message' => 'API access time expired.'], 404);
+        if ($currentTime->greaterThanOrEqualTo($apiStartTime)) {
+            abort(404, 'API no longer available.');
         }
 
-        // Your API logic here
-        return response()->json(['message' => 'API hit successful.'], 200);
+        return response()->json([
+            'message' => 'API hit successful.',
+            'time_left' => $apiStartTime->diffInSeconds($currentTime) . ' seconds remaining.',
+        ], 200);
+
     }
 }

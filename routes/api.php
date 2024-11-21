@@ -23,7 +23,3 @@ Route::middleware('isRunBefore')->group(function () {
 
 Route::get('/limited-api', [ApiController::class, 'limitedApi']);
 
-
-Route::middleware(['api', 'isRunBeforeUseVar', StartSession::class])->group(function () {
-    Route::get('/one-time-2', [CheckController::class, 'oneTime']);
-});
