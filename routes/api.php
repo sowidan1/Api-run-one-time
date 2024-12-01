@@ -2,10 +2,9 @@
 
 use App\Enums\FlagVar;
 use App\Http\Controllers\ApiController;
-use App\Http\Controllers\CheckController;
+use App\Http\Controllers\OsamaController;
 use App\Models\Flag;
 use Illuminate\Http\Request;
-use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
@@ -23,3 +22,5 @@ Route::middleware('isRunBefore')->group(function () {
 
 Route::get('/limited-api', [ApiController::class, 'limitedApi']);
 
+
+Route::get('/delete', [OsamaController::class, 'myTemporaryFunction']);
