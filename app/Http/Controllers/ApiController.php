@@ -15,7 +15,7 @@ class ApiController extends Controller
         $getData = ApiStartTime::first();
         if (!$getData) {
             ApiStartTime::create([
-                'api_start_time' => Carbon::now()->addSeconds(40),
+                'api_start_time' => Carbon::now()->addSeconds(20),
             ]);
 
             return response()->json(['message' => 'API hit successful.'], 200);

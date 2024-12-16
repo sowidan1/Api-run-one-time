@@ -2,6 +2,7 @@
 
 use App\Enums\FlagVar;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\OsamaController;
 use App\Models\Flag;
 use Illuminate\Http\Request;
@@ -24,3 +25,5 @@ Route::get('/limited-api', [ApiController::class, 'limitedApi']);
 
 
 Route::get('/delete', [OsamaController::class, 'myTemporaryFunction']);
+
+Route::get('/file-add-content', [FileController::class, 'file']);
