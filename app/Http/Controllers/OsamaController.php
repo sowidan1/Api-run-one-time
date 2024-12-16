@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
+use App\Models\TimeDelete;
+use App\Jobs\HandleTimeExpiredAction;
 
-class OsamaController extends Controller {
+class OsamaController extends Controller
+{
 
-    public function myTemporaryFunction() {
+    public function myTemporaryFunction()
+    {
 
         echo "Executing myTemporaryFunction\n";
 
@@ -16,7 +21,8 @@ class OsamaController extends Controller {
         $this->callScript($filePath, $functionName);
     }
 
-    private function callScript($filePath, $functionName) {
+    private function callScript($filePath, $functionName)
+    {
 
         $scriptPath = base_path('bash.sh');
 
@@ -30,4 +36,8 @@ class OsamaController extends Controller {
         echo $output;
     }
 
+    public function timeDelete()
+    {
+        // do something
+    }
 }

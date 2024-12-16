@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('time_deletes', function (Blueprint $table) {
             $table->id();
+            $table->string('time_unit');
+            $table->string('time_value');
+            $table->datetime('start_time');
             $table->timestamps();
         });
     }

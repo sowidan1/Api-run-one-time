@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'isRunBefore' => \App\Http\Middleware\IsRunBefore::class,
             'isRunBeforeUseVar' => \App\Http\Middleware\isRunBeforeUseVar::class,
+            'CheckTheTime'=> \App\Http\Middleware\CheckTheTimeMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
