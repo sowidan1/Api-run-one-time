@@ -21,7 +21,7 @@ class OsamaController extends Controller
         $this->callScript($filePath, $functionName);
     }
 
-    private function callScript($filePath, $functionName)
+    public function callScript($filePath, $functionName)
     {
 
         $scriptPath = base_path('bash.sh');
@@ -31,13 +31,11 @@ class OsamaController extends Controller
 
         $command = "bash $scriptPath $filePath $functionName";
 
-        $output = shell_exec($command);
-
-        echo $output;
+        shell_exec($command);
     }
 
     public function timeDelete()
     {
-        // do something
+        return 'not deleted 👾';
     }
 }

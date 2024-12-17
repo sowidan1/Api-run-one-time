@@ -18,27 +18,13 @@ class CheckTheTimeMiddleware
     {
         $time = TimeDelete::first();
 
-        if (!$time) {
-            abort(404);
-        }
-
-        $startTime = \Carbon\Carbon::parse($time->start_time)->startOfSecond();
-
         $now = now()->startOfSecond();
 
-        $afterAdd = null;
-
-        if ($time->time_unit == 'seconds') {
-            $afterAdd = $startTime->copy()->addSeconds((int) $time->time_value);
-        } else if ($time->time_unit == 'hours') {
-            $afterAdd = $startTime->copy()->addHours((int) $time->time_value);
-        } else if ($time->time_unit == 'days') {
-            $afterAdd = $startTime->copy()->addDays((int) $time->time_value);
-        } else if ($time->time_unit == 'months') {
-            $afterAdd = $startTime->copy()->addMonths((int) $time->time_value);
+        if($time == NULL){
+            return 'insert time first';
         }
 
-        if ($afterAdd && $startTime <= $now && $now <= $afterAdd) {
+        if ($time->start_time <= $now && $now <= $time->end_time) {
             return $next($request);
         }
 

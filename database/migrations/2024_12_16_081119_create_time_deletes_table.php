@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('time_unit');
             $table->string('time_value');
             $table->datetime('start_time');
+            $table->datetime('end_time')->nullable();
             $table->timestamps();
         });
     }

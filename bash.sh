@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -lt 2 ]; then
-    echo "Usage: $0 <file-path> <function-name>"
+    # echo "Usage: $0 <file-path> <function-name>"
     exit 1
 fi
 

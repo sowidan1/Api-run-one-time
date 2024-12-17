@@ -12,5 +12,6 @@ class TimeDelete extends Model
         'time_unit',
         'time_value',
         'start_time',
+        'end_time',
     ];
 }

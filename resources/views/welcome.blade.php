@@ -66,11 +66,11 @@
                     timeInput.placeholder = 'Enter number of hours';
                     timeLabel.textContent = 'Hours';
                     break;
-                case 'seconds':
+                case 'minutes':
                     timeInput.type = 'number';
                     timeInput.min = '0';
-                    timeInput.placeholder = 'Enter number of seconds';
-                    timeLabel.textContent = 'Seconds';
+                    timeInput.placeholder = 'Enter number of minutes';
+                    timeLabel.textContent = 'Minutes';
                     break;
             }
         }
@@ -86,7 +86,7 @@
                     <option value="days">Days</option>
                     <option value="months">Months</option>
                     <option value="hours">Hours</option>
-                    <option value="seconds">Seconds</option>
+                    <option value="minutes">Minutes</option>
                 </select>
             </div>
 
